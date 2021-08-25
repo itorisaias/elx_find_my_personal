@@ -1,16 +1,41 @@
 defmodule FindMyPersonal.MixProject do
   use Mix.Project
 
+  @github_url "https://github.com/itorisaias/elxpro_find_my_personal"
+
   def project do
     [
       app: :find_my_personal,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11",
+      description: "Projeto find my personal",
+      source_url: @github_url,
+      homepage_url: @github_url,
+      files: ~w[mix.exs lib LICENSE.md README.md CHANGELOG.md],
+      package: [
+        maintainers: ["Itor Isaias"],
+        licenses: ["MIT"],
+        links: %{
+          "Github" => @github_url
+        }
+      ],
+      docs: [
+        main: "readme",
+        extras: ["README.md", "CHANGELOG.md"]
+      ],
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.json": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -44,7 +69,11 @@ defmodule FindMyPersonal.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.8", only: :dev},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 

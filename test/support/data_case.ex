@@ -15,6 +15,7 @@ defmodule FindMyPersonal.DataCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL.Sandbox
 
   using do
     quote do
@@ -28,10 +29,10 @@ defmodule FindMyPersonal.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(FindMyPersonal.Repo)
+    :ok = Sandbox.checkout(FindMyPersonal.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(FindMyPersonal.Repo, {:shared, self()})
+      Sandbox.mode(FindMyPersonal.Repo, {:shared, self()})
     end
 
     :ok
