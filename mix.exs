@@ -23,13 +23,11 @@ defmodule FindMyPersonal.MixProject do
         main: "readme",
         extras: ["README.md", "CHANGELOG.md"]
       ],
-
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -37,7 +35,6 @@ defmodule FindMyPersonal.MixProject do
         "coveralls.post": :test,
         "coveralls.html": :test
       ]
-
     ]
   end
 
@@ -72,7 +69,6 @@ defmodule FindMyPersonal.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.8", only: :dev},
       {:excoveralls, "~> 0.10", only: :test},
