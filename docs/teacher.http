@@ -1,0 +1,47 @@
+# List teachers
+GET {{url}}/api/teacher
+Content-Type: application/json
+
+###
+
+# Create teacher
+POST {{url}}/api/teacher
+Content-Type: application/json
+
+{
+  "teacher": {
+    "avatar_url": "https://images.unsplash.com/photo-1619361728853-2542f3864532?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+    "birth_date": "1996-05-24",
+    "class_type": "Crossfit",
+    "education_level": "Pós-Graduado",
+    "name": "Marcio Silva"
+  }
+}
+
+###
+
+# Update teacher
+PUT {{url}}/api/teacher/1
+Content-Type: application/json
+
+{
+  "teacher": {
+    "avatar_url": "https://images.unsplash.com/photo-1619361728853-2542f3864532?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+    "birth_date": "1996-05-24",
+    "class_type": "Crossfit",
+    "education_level": "Mestrado",
+    "name": "Marcio Silva"
+  }
+}
+
+###
+
+# Detail teacher
+GET {{url}}/api/teacher/1
+Content-Type: application/json
+
+###
+
+# Delete teacher
+DELETE {{url}}/api/teacher/1
+Content-Type: application/json
