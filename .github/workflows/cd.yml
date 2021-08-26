@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy-1:
+  deploy-gcp:
     if: github.ref == 'refs/heads/main'
     name: Setup Gcloud Account
     runs-on: ubuntu-latest
