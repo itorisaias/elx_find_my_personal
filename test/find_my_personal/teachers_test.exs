@@ -6,9 +6,27 @@ defmodule FindMyPersonal.TeachersTest do
   describe "teacher" do
     alias FindMyPersonal.Teachers.Teacher
 
-    @valid_attrs %{avatar_url: "some avatar_url", birth_date: ~D[2010-04-17], class_type: "some class_type", education_level: "some education_level", name: "some name"}
-    @update_attrs %{avatar_url: "some updated avatar_url", birth_date: ~D[2011-05-18], class_type: "some updated class_type", education_level: "some updated education_level", name: "some updated name"}
-    @invalid_attrs %{avatar_url: nil, birth_date: nil, class_type: nil, education_level: nil, name: nil}
+    @valid_attrs %{
+      avatar_url: "some avatar_url",
+      birth_date: ~D[2010-04-17],
+      class_type: "some class_type",
+      education_level: "some education_level",
+      name: "some name"
+    }
+    @update_attrs %{
+      avatar_url: "some updated avatar_url",
+      birth_date: ~D[2011-05-18],
+      class_type: "some updated class_type",
+      education_level: "some updated education_level",
+      name: "some updated name"
+    }
+    @invalid_attrs %{
+      avatar_url: nil,
+      birth_date: nil,
+      class_type: nil,
+      education_level: nil,
+      name: nil
+    }
 
     def teacher_fixture(attrs \\ %{}) do
       {:ok, teacher} =
