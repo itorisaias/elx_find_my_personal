@@ -47,5 +47,14 @@
   },
   "[html-eex]": {
     "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "rest-client.environmentVariables": {
+    "$shared": {},
+    "prod": {
+      "url": ""
+    },
+    "local": {
+      "url": "http://localhost:4000"
+    },
   }
 }
