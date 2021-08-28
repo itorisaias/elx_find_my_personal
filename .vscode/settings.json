@@ -51,7 +51,7 @@
   "rest-client.environmentVariables": {
     "$shared": {},
     "prod": {
-      "url": ""
+      "url": "https://project-elxpro-wgq3tk5noq-uc.a.run.app"
     },
     "local": {
       "url": "http://localhost:4000"

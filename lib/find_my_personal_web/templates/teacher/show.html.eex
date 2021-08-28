@@ -1,0 +1,11 @@
+<h1>
+  Teacher <%= @teacher.name %>
+</h1>
+<%= link 'Back',
+  to: Routes.teacher_path(@conn, :index),
+  class: "button"
+%>
+
+<p>
+  <%= @teacher.education_level %>
+</p>

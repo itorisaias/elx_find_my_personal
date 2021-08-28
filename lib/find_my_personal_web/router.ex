@@ -19,11 +19,13 @@ defmodule FindMyPersonalWeb.Router do
   scope "/", FindMyPersonalWeb do
     pipe_through :browser
 
+    resources "/teacher", TeacherController
+
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  scope "/api", FindMyPersonalWeb do
+  scope "/api", FindMyPersonalWeb.Api, as: :api do
     pipe_through :api
 
     resources "/teacher", TeacherController, except: [:new, :edit]

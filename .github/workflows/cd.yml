@@ -25,24 +25,20 @@ jobs:
 
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          ref: main
-          fetch-depth: 0
 
       - name: Build Docker image
-        run: docker build . -t $IMAGE_NAME
+        run: docker build -t $IMAGE_NAME .
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
 
       - name: Deploy Docker image
-        env:
-          CLOUDSDK_CORE_DISABLE_PROMPTS: 1
         run: |
           gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} \
-          --set-env-vars DATABASE_URL=$DATABASE_URL \
-          --set-env-vars SECRET_KEY_BASE=$SECRET_KEY_BASE \
-          --image $IMAGE_NAME \
-          --region us-central1 \
-          --platform managed  \
-          --allow-unauthenticated
+            --set-env-vars DATABASE_URL=${{ secrets.DATABASE_URL }} \
+            --set-env-vars SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }} \
+            --image $IMAGE_NAME \
+            --region us-central1 \
+            --platform managed \
+            --allow-unauthenticated
+

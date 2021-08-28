@@ -1,0 +1,8 @@
+<h1>Edit Teacher</h1>
+
+<%= render(
+  "form.html",
+  assigns
+  |> Map.put(:action, Routes.teacher_path(@conn, :update, @teacher))
+  |> Map.put(:btn_text, "Update")
+) %>
