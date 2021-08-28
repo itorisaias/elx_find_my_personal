@@ -1,0 +1,10 @@
+<h1>Create a teacher</h1>
+
+<%= render(
+  "form.html",
+  Map.put(
+    assigns,
+    :action,
+    Routes.teacher_path(@conn, :create)
+  )
+) %>

@@ -1,0 +1,43 @@
+<h1>
+  Teacher
+</h1>
+
+
+<%= link 'New Teacher',
+  to: Routes.teacher_path(@conn, :new),
+  class: 'button'
+%>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Education Level</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%=  for teacher <- @teachers do %>
+      <tr>
+        <td>
+          <img class="avatar" src="<%= teacher.avatar_url %>" alt="">
+        </td>
+        <td><%= teacher.name %></td>
+        <td><%= teacher.education_level %></td>
+        <td>
+          <%= link 'Show',
+            to: Routes.teacher_path(@conn, :show, teacher)
+          %> |
+          <%= link 'Edit',
+            to: Routes.teacher_path(@conn, :edit, teacher)
+          %> |
+          <%= link 'Delete',
+            to: Routes.teacher_path(@conn, :delete, teacher),
+            method: :delete,
+            data: [confirm: "Are you sure?"]
+          %>
+        </td>
+      <td>
+    <% end %>
+</table>

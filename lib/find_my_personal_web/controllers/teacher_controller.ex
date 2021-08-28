@@ -4,32 +4,52 @@ defmodule FindMyPersonalWeb.TeacherController do
   alias FindMyPersonal.Teachers
   alias FindMyPersonal.Teachers.Teacher
 
-  action_fallback FindMyPersonalWeb.FallbackController
-
   def index(conn, _params) do
-    teacher = Teachers.list_teacher()
-    render(conn, "index.json", teacher: teacher)
-  end
-
-  def create(conn, %{"teacher" => teacher_params}) do
-    with {:ok, %Teacher{} = teacher} <- Teachers.create_teacher(teacher_params) do
-      conn
-      |> put_status(:created)
-      |> put_resp_header("location", Routes.teacher_path(conn, :show, teacher))
-      |> render("show.json", teacher: teacher)
-    end
+    teachers = Teachers.list_teacher()
+    render(conn, "index.html", teachers: teachers)
   end
 
   def show(conn, %{"id" => id}) do
     teacher = Teachers.get_teacher!(id)
-    render(conn, "show.json", teacher: teacher)
+    render(conn, "show.html", teacher: teacher)
+  end
+
+  def new(conn, _params) do
+    changeset = Teachers.change_teacher(%Teacher{})
+
+    render(conn, "new.html", changeset: changeset)
+  end
+
+  def create(conn, %{"teacher" => teacher_params}) do
+    case Teachers.create_teacher(teacher_params) do
+      {:ok, teacher} ->
+        conn
+        |> put_flash(:info, "Teacher #{teacher.name} created")
+        |> redirect(to: Routes.teacher_path(conn, :show, teacher))
+
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
+  end
+
+  def edit(conn, %{"id" => id}) do
+    teacher = Teachers.get_teacher!(id)
+    changeset = Teachers.change_teacher(teacher)
+
+    render(conn, "edit.html", teacher: teacher, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "teacher" => teacher_params}) do
     teacher = Teachers.get_teacher!(id)
 
-    with {:ok, %Teacher{} = teacher} <- Teachers.update_teacher(teacher, teacher_params) do
-      render(conn, "show.json", teacher: teacher)
+    case Teachers.update_teacher(teacher, teacher_params) do
+      {:ok, teacher} ->
+        conn
+        |> put_flash(:info, "Teacher #{teacher.name} updated")
+        |> redirect(to: Routes.teacher_path(conn, :show, teacher))
+
+      {:error, changeset} ->
+        render(conn, "edit.html", teacher: teacher, changeset: changeset)
     end
   end
 
@@ -37,7 +57,9 @@ defmodule FindMyPersonalWeb.TeacherController do
     teacher = Teachers.get_teacher!(id)
 
     with {:ok, %Teacher{}} <- Teachers.delete_teacher(teacher) do
-      send_resp(conn, :no_content, "")
+      conn
+      |> put_flash(:info, "Teacher #{teacher.name} deleted")
+      |> redirect(to: Routes.teacher_path(conn, :index))
     end
   end
 end
