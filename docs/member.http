@@ -1,0 +1,49 @@
+# List members
+GET {{url}}/api/members
+Content-Type: application/json
+
+###
+
+# Create member
+POST {{url}}/api/members
+Content-Type: application/json
+
+{
+  "member": {
+    "birth_date": "2000-05-24",
+    "blood": "A+",
+    "email": "itor.isaias@gmail.com",
+    "height": "1.90",
+    "name": "Itor Isaias",
+    "width": "120"
+  }
+}
+
+###
+
+# Update member
+PUT {{url}}/api/members/1
+Content-Type: application/json
+
+{
+  "member": {
+    "birth_date": "2000-05-24",
+    "blood": "B+",
+    "email": "itor.isaias@gmail.com",
+    "height": "1.90",
+    "name": "Itor Isaias",
+    "width": "120"
+  }
+}
+
+###
+
+# Detail member
+GET {{url}}/api/members/1
+Content-Type: application/json
+
+###
+
+# Delete member
+DELETE {{url}}/api/members/1
+Content-Type: application/json

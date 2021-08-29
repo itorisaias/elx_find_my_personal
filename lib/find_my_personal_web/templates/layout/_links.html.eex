@@ -1,0 +1,6 @@
+<li>
+  <%= link "Teachers", to: Routes.teacher_path(@conn, :index) %>
+</li>
+<li>
+  <%= link "Members", to: Routes.member_path(@conn, :index) %>
+</li>

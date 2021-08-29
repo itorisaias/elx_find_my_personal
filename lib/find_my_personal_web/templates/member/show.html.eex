@@ -1,0 +1,38 @@
+<h1>Show Member</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @member.name %>
+  </li>
+
+  <li>
+    <strong>Email:</strong>
+    <%= @member.email %>
+  </li>
+
+  <li>
+    <strong>Birth date:</strong>
+    <%= @member.birth_date %>
+  </li>
+
+  <li>
+    <strong>Blood:</strong>
+    <%= @member.blood %>
+  </li>
+
+  <li>
+    <strong>Height:</strong>
+    <%= @member.height %>
+  </li>
+
+  <li>
+    <strong>Width:</strong>
+    <%= @member.width %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.member_path(@conn, :edit, @member) %></span>
+<span><%= link "Back", to: Routes.member_path(@conn, :index) %></span>

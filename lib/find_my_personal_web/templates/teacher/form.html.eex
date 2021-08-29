@@ -1,47 +1,61 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      Ops, something went wrong! Please check the  errors below.
+<div class="row">
+  <%= form_for @changeset, @action, [class: "col s12"], fn f -> %>
+    <div class="row">
+      <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+          Ops, something went wrong! Please check the  errors below.
+        </div>
+      <% end %>
+
+      <div class="input-field col s12">
+        <%= label f, :name, for: "name" %>
+        <%= text_input f, :name, id: "name", class: "validate" %>
+        <%= error_tag  f, :name %>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <%= label f, :class_type, for: "class_type" %>
+        <%= text_input f, :class_type, id: "class_type", class: "validate" %>
+        <%= error_tag  f, :class_type %>
+      </div>
+
+      <div class="input-field col s12 m6">
+        <%= label f, :education_level, for: "education_level" %>
+        <%= select f,
+          :education_level,
+          [
+            "Ensino Medio Completo",
+            "Ensino Medio Incompleto",
+            "Ensino Fundamental Completo",
+            "Ensino Fundamental Incompleto",
+            "Ensino Superior Completo",
+            "Ensino Superior Incompleto",
+            "Mestrado",
+            "Doutorado"
+          ],
+          prompt: "Choose your education level",
+          id: "education_level"
+        %>
+        <%= error_tag  f, :education_level %>
+      </div>
+
+      <div class="input-field col s12">
+        <%# <%= label f, :birth_date, for: "birth_date" %> %>
+        <%= date_input f, :birth_date, id: "birth_date", class: "validate datepicker" %>
+        <%# <%= error_tag  f, :birth_date %> %>
+      </div>
+
+      <div class="input-field col s12">
+        <%= label f, :avatar_url, for: "avatar_url" %>
+        <%= url_input f, :avatar_url, id: "avatar_url", class: "validate" %>
+        <%= error_tag  f, :avatar_url %>
+      </div>
+
+      <%= link 'Back',
+        to: Routes.teacher_path(@conn, :index),
+        class: "btn"
+      %>
+      <%= submit @btn_text, class: "btn" %>
     </div>
-  <% end %>
-
-  <%= label f, :name, for: "name" %>
-  <%= text_input f, :name, id: "name" %>
-  <%= error_tag  f, :name %>
-
-  <%= label f, :class_type, for: "class_type" %>
-  <%= text_input f, :class_type, id: "class_type" %>
-  <%= error_tag  f, :class_type %>
-
-  <%= label f, :education_level, for: "education_level" %>
-  <%= select f,
-    :education_level,
-    [
-      "Ensino Medio Completo",
-      "Ensino Medio Incompleto",
-      "Ensino Fundamental Completo",
-      "Ensino Fundamental Incompleto",
-      "Ensino Superior Completo",
-      "Ensino Superior Incompleto",
-      "Mestrado",
-      "Doutorado"
-    ],
-    prompt: "Choose your education level",
-    id: "education_level"
-  %>
-  <%= error_tag  f, :education_level %>
-
-  <%= label f, :birth_date, for: "birth_date" %>
-  <%= date_input f, :birth_date, id: "birth_date" %>
-  <%= error_tag  f, :birth_date %>
-
-  <%= label f, :avatar_url, for: "avatar_url" %>
-  <%= url_input f, :avatar_url, id: "avatar_url" %>
-  <%= error_tag  f, :avatar_url %>
-
-  <%= link 'Back',
-    to: Routes.teacher_path(@conn, :index),
-    class: "button button-outline"
-  %>
-  <%= submit @btn_text, class: "" %>
-<%  end %>
+  <%  end %>
+</div>

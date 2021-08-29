@@ -5,7 +5,7 @@
 
 <%= link 'New Teacher',
   to: Routes.teacher_path(@conn, :new),
-  class: 'button'
+  class: 'btn'
 %>
 
 <table>

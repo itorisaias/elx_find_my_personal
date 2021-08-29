@@ -40,3 +40,6 @@ npm-debug.log
 .env
 .env.local
 .env.production
+
+# Google Cloud Platform
+key.json
